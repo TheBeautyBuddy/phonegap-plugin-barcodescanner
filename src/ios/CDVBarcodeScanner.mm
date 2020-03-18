@@ -877,7 +877,6 @@ parentViewController:(UIViewController*)parentViewController
                        action:@selector(cancelButtonPressed:)
                        ];
 
-
     id flexSpace = [[UIBarButtonItem alloc]
                     initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                     target:nil
@@ -932,7 +931,11 @@ parentViewController:(UIViewController*)parentViewController
   }
     self.toolbar.items = items;
     [overlayView addSubview: self.toolbar];
-
+    
+    UILabel* myLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 50, 200, 40)];
+    [myLabel setBackgroundColor:[UIColor clearColor]];
+    [myLabel setText:@"Position the barcode in the space below"];
+    
     UIImage* reticleImage = [self buildReticleImage];
     self.reticleView = [[UIImageView alloc] initWithImage:reticleImage];
 
@@ -944,8 +947,9 @@ parentViewController:(UIViewController*)parentViewController
         | UIViewAutoresizingFlexibleTopMargin
         | UIViewAutoresizingFlexibleBottomMargin)
     ;
-
+    
     [overlayView addSubview: self.reticleView];
+    [overlayView addSubview: myLabel];
     [self resizeElements];
     return overlayView;
 }
@@ -966,7 +970,7 @@ parentViewController:(UIViewController*)parentViewController
     CGContextRef context = UIGraphicsGetCurrentContext();
 
     if (self.processor.is1D) {
-        UIColor* color = [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:RETICLE_ALPHA];
+        UIColor* color = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:RETICLE_ALPHA];
         CGContextSetStrokeColorWithColor(context, color.CGColor);
         CGContextSetLineWidth(context, RETICLE_WIDTH);
         CGContextBeginPath(context);
