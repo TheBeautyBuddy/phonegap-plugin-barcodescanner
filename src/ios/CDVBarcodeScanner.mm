@@ -955,7 +955,7 @@ parentViewController:(UIViewController*)parentViewController
 }
 //-------------------------------------------------------------------------
 // Round rect
-void addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWidth, float ovalHeight);
+- (void) addRoundedRectToPath(CGContextRef context, CGRect rect, float ovalWidth, float ovalHeight);
 {
     float fw, fh;
     if (ovalWidth == 0 || ovalHeight == 0) {
