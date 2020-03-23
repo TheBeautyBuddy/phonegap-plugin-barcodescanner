@@ -877,7 +877,6 @@ parentViewController:(UIViewController*)parentViewController
                        action:@selector(cancelButtonPressed:)
                        ];
 
-
     id flexSpace = [[UIBarButtonItem alloc]
                     initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                     target:nil
@@ -932,7 +931,11 @@ parentViewController:(UIViewController*)parentViewController
   }
     self.toolbar.items = items;
     [overlayView addSubview: self.toolbar];
-
+    
+    UILabel* myLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 50, 400, 40)];
+    [myLabel setBackgroundColor:[UIColor clearColor]];
+    [myLabel setText:@"Position the barcode in the space below"];
+    
     UIImage* reticleImage = [self buildReticleImage];
     self.reticleView = [[UIImageView alloc] initWithImage:reticleImage];
 
@@ -944,8 +947,9 @@ parentViewController:(UIViewController*)parentViewController
         | UIViewAutoresizingFlexibleTopMargin
         | UIViewAutoresizingFlexibleBottomMargin)
     ;
-
+    
     [overlayView addSubview: self.reticleView];
+    [overlayView addSubview: myLabel];
     [self resizeElements];
     return overlayView;
 }
@@ -964,9 +968,8 @@ parentViewController:(UIViewController*)parentViewController
     UIImage* result;
     UIGraphicsBeginImageContext(CGSizeMake(RETICLE_SIZE, RETICLE_SIZE));
     CGContextRef context = UIGraphicsGetCurrentContext();
-
     if (self.processor.is1D) {
-        UIColor* color = [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:RETICLE_ALPHA];
+        UIColor* color = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.0];
         CGContextSetStrokeColorWithColor(context, color.CGColor);
         CGContextSetLineWidth(context, RETICLE_WIDTH);
         CGContextBeginPath(context);
@@ -977,7 +980,7 @@ parentViewController:(UIViewController*)parentViewController
     }
 
     if (self.processor.is2D) {
-        UIColor* color = [UIColor colorWithRed:0.0 green:1.0 blue:0.0 alpha:RETICLE_ALPHA];
+        UIColor* color = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:RETICLE_ALPHA];
         CGContextSetStrokeColorWithColor(context, color.CGColor);
         CGContextSetLineWidth(context, RETICLE_WIDTH);
         CGContextStrokeRect(context,
