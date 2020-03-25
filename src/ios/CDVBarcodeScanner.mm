@@ -932,7 +932,8 @@ parentViewController:(UIViewController*)parentViewController
     self.toolbar.items = items;
     [overlayView addSubview: self.toolbar];
     
-    UILabel* myLabel = [[UILabel alloc]initWithFrame:CGRectMake(30, 50, 400, 40)];
+    UILabel* myLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0,self.view.bounds.size.width, 40)];
+    myLabel.textAlignment = NSTextAlignmentCenter;
     [myLabel setBackgroundColor:[UIColor clearColor]];
     [myLabel setText:@"Position the barcode in the space below"];
     
